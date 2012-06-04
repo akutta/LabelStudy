@@ -13,9 +13,8 @@
     NSUInteger question;
     
     IBOutlet UIButton *label0, *label1, *label2, *label3, *label4, *label5, *label6, *label7, *label8;
-    
     IBOutlet UILabel *mainTitle, *questionLabel;
-    
+    IBOutlet UILabel *pile1, *pile2, *pile3;
     
     NSUInteger numPiles;
     IBOutlet UILabel *pileLabel1, *pileLabel2, *pileLabel3;

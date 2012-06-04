@@ -39,7 +39,19 @@
     [pileLabel3 setNumberOfLines:2];
     
     mainTitle.layer.borderColor = [UIColor grayColor].CGColor;
-    mainTitle.layer.borderWidth = 3.0;
+    mainTitle.layer.borderWidth = 3.0f;
+    
+    pile1.layer.borderWidth = 3.0f;
+    pile1.layer.borderColor = [UIColor grayColor].CGColor;
+    pile1.layer.cornerRadius = 10.0f;
+    
+    pile2.layer.borderWidth = 3.0f;
+    pile2.layer.borderColor = [UIColor grayColor].CGColor;
+    pile2.layer.cornerRadius = 10.0f;
+    
+    pile3.layer.borderWidth = 3.0f;
+    pile3.layer.borderColor = [UIColor grayColor].CGColor;
+    pile3.layer.cornerRadius = 10.0f;
     
     numPiles = 2;
     
@@ -48,50 +60,55 @@
             backButton.hidden = true;
             questionLabel.text = @"Please sort the warning labels into two piles, those meant for someone like you and those for a different kind of person.";
             pileLabel1.text = @"Someone Like You";
-            pileLabel2.text = @"Different Kind of Person";
+            pileLabel3.text = @"Different Kind of Person";
             break;
             
         case 2:
             questionLabel.text = @"Please sort the warning labels into three piles, those mostly for 'someone your age', for 'someone who is younger', and for 'someone who is older'.";
-            pileLabel1.text = @"Someone your Age";
-            pileLabel2.text = @"Someone who is Younger";
-            pileLabel3.text = @"Someone who is Older";
+            pileLabel1.text = @"Someone Who is Younger";
+            pileLabel2.text = @"Someone Your Age";
+            pileLabel3.text = @"Someone Who is Older";
             numPiles = 3;
             break;
 
         case 3:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you 'think about quitting' and those that 'do not'.";
             pileLabel1.text = @"Quitting";
-            pileLabel2.text = @"Not Quitting";
+            pileLabel3.text = @"Not Quitting";
             break;
             
         case 4:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you think about 'calling' 1-800-QUIT-NOW and those that do 'not'.";
             pileLabel1.text = @"Calling";
-            pileLabel2.text = @"Not Calling";
+            pileLabel3.text = @"Not Calling";
             break;
             
         case 5:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you want to 'avoid smoking' and those that do 'not'.";
             pileLabel1.text = @"Avoid Smoking";
-            pileLabel2.text = @"Not Avoid Smoking";
+            pileLabel3.text = @"Not Avoid Smoking";
             break;
             
         case 6:
             questionLabel.text = @"Please sort the warning labels into two piles, those that would 'make people look down on you because you smoke', and those that would 'not'.";
-            pileLabel1.text = @"Make People Look Down on you because you Smoke";
-            pileLabel2.text = @"Would Not Look Down On you because you Smoke";
+            pileLabel1.text = @"Make People Look Down on You";
+            pileLabel3.text = @"Would Not Look Down on You";
             break;
             
         case 7:
             nextButton.hidden = true;
             questionLabel.text = @"Please sort the warning labels into two piles, those that would make you 'think about banning smoking in your home or car', and those that would 'not'.";
-            pileLabel1.text = @"Would make you think";
-            pileLabel2.text = @"Would not make you think";
+            pileLabel1.text = @"Would Make You Think";
+            pileLabel3.text = @"Would Not Make You Think";
             break;
         
         default:
             break;
+    }
+    
+    if ( numPiles == 2 ) {
+        pileLabel2.hidden = true;
+        pile2.hidden = true;
     }
     
 }
@@ -131,6 +148,7 @@
 
 - (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
 {
+    [self.view bringSubviewToFront:(UIView*)sender];
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
     control.center = point;
