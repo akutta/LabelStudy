@@ -12,6 +12,5 @@
     IBOutlet UITextField* userID;
 }
 
-- (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event;
 -(IBAction)beginStudy:(id)sender;
 @end
