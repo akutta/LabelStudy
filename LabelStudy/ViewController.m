@@ -22,13 +22,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
-{
-    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
-    UIControl *control = sender;
-    control.center = point;
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
