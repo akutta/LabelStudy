@@ -18,6 +18,17 @@
 #define kDBAppKey @"l20yc2w3q5ala1g"
 #define kDBAppSecret @"rgksxexn6dsd0y1"
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        }
+        return YES;
+    }
+    // Add whatever other url handling code your app requires here
+    return NO;
+}
 
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 newController:(id)controller
 {
@@ -40,6 +51,10 @@
                                                     appSecret:kDBAppSecret
                                                          root:kDBRootAppFolder]; // either kDBRootAppFolder or kDBRootDropbox
     [DBSession setSharedSession:dbSession];
+    
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self.window.rootViewController];
+    }
     
     return YES;
 }

@@ -146,12 +146,94 @@
     return del;
 }
 
+- (BOOL) withinRange:(CGFloat)point minValue:(CGFloat)min maxValue:(CGFloat)max {
+    if ( point > min )
+        if ( point < max ) 
+            return TRUE;
+    return FALSE;
+}
+
+- (BOOL) withinPile:(CGRect)bounds objectPoint:(CGPoint)point {
+    if ( [self withinRange:point.x minValue:bounds.origin.x maxValue:(bounds.origin.x+bounds.size.width)] )
+        if ( [self withinRange:point.y minValue:bounds.origin.y maxValue:(bounds.origin.y+bounds.size.height)] ) 
+            return TRUE;
+    
+    return FALSE;
+}
+
+- (IBAction)imageReleased:(id)sender withEvent:(UIEvent*) event{
+    
+    [self.view bringSubviewToFront:(UIView*)sender];
+    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+    UIControl *control = sender;
+    
+    if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
+        //NSLog(@"Released Within Pile 1!");
+        control.center = CGPointMake(pile1.frame.origin.x + pile1.frame.size.width/2, 
+                                     pile1.frame.origin.y + pile1.frame.size.height/2);
+    }
+    
+    // Special Case if 3 piles
+    if (numPiles == 3 ) {
+        if ( [self withinPile:pile2.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Released Within Pile 2!");
+            control.center = CGPointMake(pile2.frame.origin.x + pile2.frame.size.width/2, 
+                                         pile2.frame.origin.y + pile2.frame.size.height/2);
+        }
+        
+        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Released Within Pile 3!");
+            control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
+                                         pile3.frame.origin.y + pile3.frame.size.height/2);
+        }
+    } else {
+        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Released Within Pile 2!");
+            control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
+                                         pile3.frame.origin.y + pile3.frame.size.height/2);
+        }
+    }
+}
+
 - (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
 {
     [self.view bringSubviewToFront:(UIView*)sender];
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
     control.center = point;
+    
+    
+    if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
+        //NSLog(@"Within Pile 1!");
+        pile1.backgroundColor = [UIColor darkGrayColor];
+    } else {
+        pile1.backgroundColor = nil;
+    }
+    
+    // Special Case if 3 piles
+    if (numPiles == 3 ) {
+        if ( [self withinPile:pile2.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Within Pile 2!");
+            pile2.backgroundColor = [UIColor darkGrayColor];
+        } else {
+            pile2.backgroundColor = nil;
+        }
+        
+        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Within Pile 3!");
+            pile3.backgroundColor = [UIColor darkGrayColor];
+        } else {
+            pile3.backgroundColor = nil;
+        }
+        
+    } else {
+        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
+            //NSLog(@"Within Pile 2!");
+            pile3.backgroundColor = [UIColor darkGrayColor];
+        } else {
+            pile3.backgroundColor = nil;
+        }
+    }
 }
 
 
