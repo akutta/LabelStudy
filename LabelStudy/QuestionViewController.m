@@ -65,16 +65,32 @@
     numPiles = 2;
     
     switch (question) {
-        
-        case 3:
+        case 1:
             backButton.hidden = true;
+            questionLabel.text = @"On this page you’ll see each of the labels.  Look at each of them.  Then, click on the label that you think will be most effective in convince you to not start smoking.";
+            
+            pileLabel1.hidden = true;
+            pile1.hidden = true;
+            pileLabel3.hidden = true;
+            pile3.hidden = true;
+            break;
+        case 2:
+            backButton.hidden = true;
+            questionLabel.text = @"On this page you’ll see each of the labels.  Look at each of them.  Then, click on the label that you think is most effective in convincing YOU to try to quit smoking.";
+            
+            
+            pileLabel1.hidden = true;
+            pile1.hidden = true;
+            pileLabel3.hidden = true;
+            pile3.hidden = true;
+            break;
+        case 3:
             questionLabel.text = @"Please sort the warning labels into two piles, those meant for someone like you and those for a different kind of person.";
             pileLabel1.text = @"Someone Like You";
             pileLabel3.text = @"Different Kind of Person";
             break;
             
         case 4:
-            backButton.hidden = true;
             questionLabel.text = @"Please sort the warning labels into three piles, those mostly for 'someone your age', for 'someone who is younger', and for 'someone who is older'.";
             pileLabel1.text = @"Someone Who is Younger";
             pileLabel2.text = @"Someone Your Age";
@@ -101,15 +117,12 @@
             break;
             
         case 8:
-            
             questionLabel.text = @"Please sort the warning labels into two piles, those that would 'make people look down on you because you smoke', and those that would 'not'.";
             pileLabel1.text = @"Make People Look Down on You";
             pileLabel3.text = @"Would Not Look Down on You";
             break;
             
         case 9:
-            nextButton.hidden = true;
-            finishButton.hidden = false;
             questionLabel.text = @"Please sort the warning labels into two piles, those that would make you 'think about banning smoking in your home or car', and those that would 'not'.";
             pileLabel1.text = @"Would Make You Think";
             pileLabel3.text = @"Would Not Make You Think";
@@ -120,7 +133,8 @@
     }
     
     if ( question == [[questionBank lastObject] intValue] ) {
-        
+        nextButton.hidden = true;
+        finishButton.hidden = false;
     }
      
     if ( numPiles == 2 ) {
@@ -144,7 +158,9 @@
 
 -(IBAction)lastQuestion:(id)sender
 {
-    [remainingQuestions insertObject:[NSNumber numberWithInt:question] atIndex:0];
+    NSInteger index = [questionBank indexOfObject:[NSNumber numberWithInt:question]];
+    NSInteger numberToInsert = [[questionBank objectAtIndex:(index-1)] intValue];
+    [remainingQuestions insertObject:[NSNumber numberWithInt:numberToInsert] atIndex:0];
     QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
                                                                              questions:questionBank questionsToAsk:remainingQuestions];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
@@ -318,6 +334,28 @@
 
 - (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
 {
+    
+    // Special Case of only Selecting an Image
+    if ( question < 3 ) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *fileName = [[NSString alloc] initWithFormat:@"%@_%i.txt", [self delegate].userId,question];
+        NSString* selectedLabel = ((UIButton*)sender).titleLabel.text;
+        [selectedLabel writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
+                 atomically:YES 
+                   encoding:NSStringEncodingConversionAllowLossy 
+                      error:nil];
+
+        QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
+                                                                                 questions:questionBank questionsToAsk:remainingQuestions];
+        [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
+        
+        
+        return;
+    }
+    
     [self.view bringSubviewToFront:(UIView*)sender];
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
