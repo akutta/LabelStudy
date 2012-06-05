@@ -5,6 +5,9 @@
 //  Created by Andrew Kutta on 6/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+//
+//  If you dislike ugly code do not continue reading this.
+//
 
 #import "QuestionViewController.h"
 #import "AppDelegate.h"
@@ -144,7 +147,7 @@
     [self addBorder:pile3_3x3 width:1.0f radius:0.0f];
     
     largeFrame = label0.frame;
-    CGFloat scale = 72.0f / MAX(label0.frame.size.width,label0.frame.size.height);
+    CGFloat scale = 68.0f / MAX(label0.frame.size.width,label0.frame.size.height);
     smallFrame = CGRectMake(0.0, 0.0, label0.frame.size.width * scale, label0.frame.size.height * scale);
     
 
@@ -355,38 +358,99 @@
     }
 }
 
--(void)checkHighlight:(CGPoint)point {
-    [self highlight:pile1_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile1_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+-(CGPoint)getCenter:(CGRect)frame {
+    return CGPointMake(frame.origin.x + frame.size.width/2, 
+                        frame.origin.y + frame.size.height/2);
+}
+
+-(CGPoint)checkHighlight:(CGPoint)point {
+    CGPoint retValue = CGPointZero;
+    if ( [self highlight:pile1_1x1 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_1x1.frame];
+    }
+    if ([self highlight:pile1_1x2 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_1x2.frame];
+    }
+    if ([self highlight:pile1_1x3 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_1x3.frame];
+    }
+    if ([self highlight:pile1_2x1 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_2x1.frame];
+    }
+    if ([self highlight:pile1_2x2 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_2x2.frame];
+    }
+    if ([self highlight:pile1_2x3 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_2x3.frame];
+    }
+    if ([self highlight:pile1_3x1 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_3x1.frame];
+    }
+    if ([self highlight:pile1_3x2 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_3x2.frame];
+    }
+    if ([self highlight:pile1_3x3 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile1_3x3.frame];
+    }
     
+    if ([self highlight:pile2_1x1 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile2_1x1.frame];
+    }
+    if ([self highlight:pile2_1x2 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile2_1x2.frame];
+    }
+    if ([self highlight:pile2_1x3 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile2_1x3.frame];
+    }
+    if ([self highlight:pile2_2x1 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile2_2x1.frame];
+    }
+    if ([self highlight:pile2_2x2 objectPoint:point highlightColor:[UIColor blueColor]] ) {
+        retValue = [self getCenter:pile2_2x2.frame];
+    }
+    if ([self highlight:pile2_2x3 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile2_2x3.frame];
+    }
+    if ([self highlight:pile2_3x1 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile2_3x1.frame];
+    }
+    if ([self highlight:pile2_3x2 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile2_3x2.frame];
+    }
+    if ([self highlight:pile2_3x3 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile2_3x3.frame];
+    }
+
     
-    [self highlight:pile2_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile2_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    if ([self highlight:pile3_1x1 objectPoint:point highlightColor:[UIColor blueColor]]) {
+        retValue = [self getCenter:pile3_1x1.frame];
+    }
+    if ([self highlight:pile3_1x2 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile3_1x2.frame];
+    }
+    if ([self highlight:pile3_1x3 objectPoint:point highlightColor:[UIColor blueColor]]) {
+        retValue = [self getCenter:pile3_1x3.frame];
+    }
+    if ([self highlight:pile3_2x1 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile3_2x1.frame];
+    }
+    if ([self highlight:pile3_2x2 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile3_2x2.frame];
+    }
+    if ([self highlight:pile3_2x3 objectPoint:point highlightColor:[UIColor blueColor]] ){
+        retValue = [self getCenter:pile3_2x3.frame];
+    }
+    if ([self highlight:pile3_3x1 objectPoint:point highlightColor:[UIColor blueColor]]) {
+        retValue = [self getCenter:pile3_3x1.frame];
+    }
+    if ([self highlight:pile3_3x2 objectPoint:point highlightColor:[UIColor blueColor]]) {
+        retValue = [self getCenter:pile3_3x2.frame];
+    }
+    if ([self highlight:pile3_3x3 objectPoint:point highlightColor:[UIColor blueColor]]) {
+        retValue = [self getCenter:pile3_3x3.frame];
+    }
     
-    
-    [self highlight:pile3_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
-    [self highlight:pile3_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    return retValue;
 }
 
 
@@ -401,30 +465,30 @@
     if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
         //NSLog(@"Released Within Pile 1!");
         pileNumber = 1;
-        control.center = CGPointMake(pile1.frame.origin.x + pile1.frame.size.width/2, 
-                                     pile1.frame.origin.y + pile1.frame.size.height/2);
+        //control.center = CGPointMake(pile1.frame.origin.x + pile1.frame.size.width/2, 
+                                    // pile1.frame.origin.y + pile1.frame.size.height/2);
     }
     
     // Special Case if 3 piles
     if (numPiles == 3 ) {
         if ( [self withinPile:pile2.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Released Within Pile 2!");
-            control.center = CGPointMake(pile2.frame.origin.x + pile2.frame.size.width/2, 
-                                         pile2.frame.origin.y + pile2.frame.size.height/2);
+            //control.center = CGPointMake(pile2.frame.origin.x + pile2.frame.size.width/2, 
+                   //                      pile2.frame.origin.y + pile2.frame.size.height/2);
             pileNumber = 2;
         }
         
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Released Within Pile 3!");
-            control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
-                                         pile3.frame.origin.y + pile3.frame.size.height/2);
+            //control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
+                 //                        pile3.frame.origin.y + pile3.frame.size.height/2);
             pileNumber = 3;
         }
     } else {
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Released Within Pile 2!");
-            control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
-                                         pile3.frame.origin.y + pile3.frame.size.height/2);
+            //control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
+               //                          pile3.frame.origin.y + pile3.frame.size.height/2);
             pileNumber = 2;
         }
     }
@@ -454,7 +518,13 @@
             break;
     }
     
+    // Ugly ignore this too
+    CGPoint retVal = [self checkHighlight:point];
     [self checkHighlight:(CGPointZero)];
+    if ( retVal.x != CGPointZero.x && retVal.y != CGPointZero.y ) {
+        // Subview is highlights.  Snap to that point
+        control.center = retVal;
+    }
     pile1.backgroundColor = nil;
     pile2.backgroundColor = nil;
     pile3.backgroundColor = nil;
