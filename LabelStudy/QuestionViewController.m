@@ -17,13 +17,19 @@
 
 @implementation QuestionViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+            questions:(NSArray*)QuestionBank questionsToAsk:(NSMutableArray*)futureQuestions
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"Current Question:  %i",currentQuestion);
-        question = currentQuestion;
+        questionBank = QuestionBank;
+        question = [[futureQuestions objectAtIndex:0] intValue];
+        [futureQuestions removeObjectAtIndex:0];
+        remainingQuestions = futureQuestions;
+        
+        //question = currentQuestion;
+        NSLog(@"Current Question:  %i",question);
         imagesOnPile1 = [[NSMutableArray alloc] init];
         imagesOnPile2 = [[NSMutableArray alloc] init];
         imagesOnPile3 = [[NSMutableArray alloc] init];
@@ -35,7 +41,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     
     [questionLabel setNumberOfLines:3];
     [pileLabel1 setNumberOfLines:2];
@@ -60,14 +65,16 @@
     numPiles = 2;
     
     switch (question) {
-        case 1:
+        
+        case 3:
             backButton.hidden = true;
             questionLabel.text = @"Please sort the warning labels into two piles, those meant for someone like you and those for a different kind of person.";
             pileLabel1.text = @"Someone Like You";
             pileLabel3.text = @"Different Kind of Person";
             break;
             
-        case 2:
+        case 4:
+            backButton.hidden = true;
             questionLabel.text = @"Please sort the warning labels into three piles, those mostly for 'someone your age', for 'someone who is younger', and for 'someone who is older'.";
             pileLabel1.text = @"Someone Who is Younger";
             pileLabel2.text = @"Someone Your Age";
@@ -75,31 +82,32 @@
             numPiles = 3;
             break;
 
-        case 3:
+        case 5:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you 'think about quitting' and those that 'do not'.";
             pileLabel1.text = @"Quitting";
             pileLabel3.text = @"Not Quitting";
             break;
             
-        case 4:
+        case 6:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you think about 'calling' 1-800-QUIT-NOW and those that do 'not'.";
             pileLabel1.text = @"Calling";
             pileLabel3.text = @"Not Calling";
             break;
-            
-        case 5:
+        
+        case 7:
             questionLabel.text = @"Please sort the warning labels into two piles, those that make you want to 'avoid smoking' and those that do 'not'.";
             pileLabel1.text = @"Avoid Smoking";
             pileLabel3.text = @"Not Avoid Smoking";
             break;
             
-        case 6:
+        case 8:
+            
             questionLabel.text = @"Please sort the warning labels into two piles, those that would 'make people look down on you because you smoke', and those that would 'not'.";
             pileLabel1.text = @"Make People Look Down on You";
             pileLabel3.text = @"Would Not Look Down on You";
             break;
             
-        case 7:
+        case 9:
             nextButton.hidden = true;
             finishButton.hidden = false;
             questionLabel.text = @"Please sort the warning labels into two piles, those that would make you 'think about banning smoking in your home or car', and those that would 'not'.";
@@ -111,6 +119,10 @@
             break;
     }
     
+    if ( question == [[questionBank lastObject] intValue] ) {
+        
+    }
+     
     if ( numPiles == 2 ) {
         pileLabel2.hidden = true;
         pile2.hidden = true;
@@ -132,7 +144,9 @@
 
 -(IBAction)lastQuestion:(id)sender
 {
-    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:(question - 1)];
+    [remainingQuestions insertObject:[NSNumber numberWithInt:question] atIndex:0];
+    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
+                                                                             questions:questionBank questionsToAsk:remainingQuestions];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
 }
 
@@ -175,7 +189,7 @@
         }        
     }
     
-    NSLog(@"%@\n%@",[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] ,buffer);
+    //NSLog(@"%@\n%@",[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] ,buffer);
     
     [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
              atomically:YES 
@@ -190,7 +204,8 @@
 -(IBAction)nextQuestion:(id)sender
 {
     [self processFeedback];
-    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:(question + 1)];
+    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
+                                        questions:questionBank questionsToAsk:remainingQuestions];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
 }
 

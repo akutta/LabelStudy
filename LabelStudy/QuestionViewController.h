@@ -20,9 +20,13 @@
     IBOutlet UILabel *pileLabel1, *pileLabel2, *pileLabel3;
     
     NSMutableArray *imagesOnPile1, *imagesOnPile2, *imagesOnPile3;
+    
+    NSMutableArray *remainingQuestions;
+    NSArray        *questionBank;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+            questions:(NSArray*)QuestionBank questionsToAsk:(NSMutableArray*)futureQuestions;
 -(IBAction)lastQuestion:(id)sender;
 -(IBAction)nextQuestion:(id)sender;
 -(IBAction)finishQuiz:(id)sender;

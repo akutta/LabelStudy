@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "QuestionViewController.h"
+#import "SurveyViewController.h"
 
 @interface ViewController ()
     -(AppDelegate*)delegate;
@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [instructionLabel setNumberOfLines:2];
 }
 
 - (void)viewDidUnload
@@ -45,12 +46,24 @@
         return;
     }
     
+    if ( [userAge.text length] == 0 ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No User Age Entered"
+                                                        message:@"You must enter your Age to continue." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     if ( ![userID.text compare:@"hcrlwashu"] ) {
         NSLog(@"Uploading Stored Data to Dropbox");
         userID.text = @"";
         [[self delegate].dbInterface uploadAllFiles];
         return;
     }
+    
+    
     
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains
@@ -64,11 +77,23 @@
                                                     attributes:nil
                                                          error:&error])
     {
-        NSLog(@"Create directory error: %@", error);
+        //NSLog(@"Create directory error: %@", error);
     }
     
+    [[self delegate] setUserAge:[userAge.text intValue]];
     [[self delegate] setUserId:userID.text];
-    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:1];
+    //NSLog(@"%@ is %i years old",[self delegate].userId, [self delegate].userAge);
+    
+    if ( isNavajo.selectedSegmentIndex == 0 ) {
+        //NSLog(@"Is Not a Navajo");
+        [[self delegate] setIsNavajo:NO];
+    } else {
+        //NSLog(@"Is a Navajo");
+        [[self delegate] setIsNavajo:YES];
+    }
+    
+    //QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:1];
+    SurveyViewController *nextView = [[SurveyViewController alloc] initWithNibName:@"SurveyViewController" bundle:nil];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
 }
 

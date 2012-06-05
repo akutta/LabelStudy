@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A92B717F157E6FCE0088EBC6 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */; };
+		A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */; };
 		A9D0F127157D34F900D6BA4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F126157D34F900D6BA4F /* UIKit.framework */; };
 		A9D0F129157D34F900D6BA4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F128157D34F900D6BA4F /* Foundation.framework */; };
 		A9D0F12B157D34F900D6BA4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F12A157D34F900D6BA4F /* CoreGraphics.framework */; };
@@ -36,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A92B717C157E6FCE0088EBC6 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyViewController.h; sourceTree = "<group>"; };
+		A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
+		A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyViewController.xib; sourceTree = "<group>"; };
 		A9D0F122157D34F900D6BA4F /* LabelStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D0F126157D34F900D6BA4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9D0F128157D34F900D6BA4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,10 +130,12 @@
 				A9D0F136157D34F900D6BA4F /* AppDelegate.m */,
 				A9D0F16C157D9A7900D6BA4F /* DropboxInterface.h */,
 				A9D0F16D157D9A7900D6BA4F /* DropboxInterface.m */,
-				A9D0F138157D34F900D6BA4F /* ViewController.h */,
-				A9D0F139157D34F900D6BA4F /* ViewController.m */,
 				A9D0F14B157D3F3F00D6BA4F /* QuestionViewController.h */,
 				A9D0F14C157D3F3F00D6BA4F /* QuestionViewController.m */,
+				A92B717C157E6FCE0088EBC6 /* SurveyViewController.h */,
+				A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */,
+				A9D0F138157D34F900D6BA4F /* ViewController.h */,
+				A9D0F139157D34F900D6BA4F /* ViewController.m */,
 				A9D0F16A157D653E00D6BA4F /* XIBS */,
 				A9D0F150157D3F8C00D6BA4F /* Images */,
 				A9D0F12D157D34F900D6BA4F /* Supporting Files */,
@@ -177,8 +184,9 @@
 		A9D0F16A157D653E00D6BA4F /* XIBS */ = {
 			isa = PBXGroup;
 			children = (
-				A9D0F13B157D34F900D6BA4F /* ViewController.xib */,
 				A9D0F14D157D3F3F00D6BA4F /* QuestionViewController.xib */,
+				A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */,
+				A9D0F13B157D34F900D6BA4F /* ViewController.xib */,
 			);
 			name = XIBS;
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 				A9D0F167157D44DA00D6BA4F /* Image_6.png in Resources */,
 				A9D0F168157D44DA00D6BA4F /* Image_7.png in Resources */,
 				A9D0F169157D44DA00D6BA4F /* Image_8.png in Resources */,
+				A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +272,7 @@
 				A9D0F13A157D34F900D6BA4F /* ViewController.m in Sources */,
 				A9D0F14E157D3F3F00D6BA4F /* QuestionViewController.m in Sources */,
 				A9D0F16E157D9A7900D6BA4F /* DropboxInterface.m in Sources */,
+				A92B717F157E6FCE0088EBC6 /* SurveyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +394,7 @@
 				A9D0F142157D34F900D6BA4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

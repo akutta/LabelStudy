@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController {
-    IBOutlet UITextField* userID;
+    IBOutlet UITextField* userID, *userAge;
+    IBOutlet UILabel* instructionLabel;
+    IBOutlet UISegmentedControl* isNavajo;
 }
 
 -(IBAction)beginStudy:(id)sender;
