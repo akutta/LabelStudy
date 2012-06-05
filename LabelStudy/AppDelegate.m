@@ -9,14 +9,13 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import "DropboxInterface.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController, userId, dbSession;
 
-#define kDBAppKey @"l20yc2w3q5ala1g"
-#define kDBAppSecret @"rgksxexn6dsd0y1"
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     if ([[DBSession sharedSession] handleOpenURL:url]) {
@@ -47,14 +46,9 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    dbSession = [[DBSession alloc]  initWithAppKey:kDBAppKey
-                                                    appSecret:kDBAppSecret
-                                                         root:kDBRootAppFolder]; // either kDBRootAppFolder or kDBRootDropbox
-    [DBSession setSharedSession:dbSession];
+    dbInterface = [[DropboxInterface alloc] init];
+    [dbInterface initializeDropbox:self.window];
     
-    if (![[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] linkFromController:self.window.rootViewController];
-    }
     
     return YES;
 }

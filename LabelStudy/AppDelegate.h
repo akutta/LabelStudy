@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <DropboxSDK/DropboxSDK.h>
+#import "DropboxInterface.h"
 
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSString* userID;
     DBSession* dbSession;
+    
+    DropboxInterface *dbInterface;
 }
 
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 newController:(id)controller;

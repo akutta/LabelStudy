@@ -16,6 +16,18 @@
 
 @implementation QuestionViewController
 
+- (NSString*)getDirPath:(NSString*)dir {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:dir];
+    
+    NSError *error;
+    [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:&error];   
+    
+    return documentsDirectory;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,6 +35,9 @@
         // Custom initialization
         NSLog(@"Current Question:  %i",currentQuestion);
         question = currentQuestion;
+        imagesOnPile1 = [[NSMutableArray alloc] init];
+        imagesOnPile2 = [[NSMutableArray alloc] init];
+        imagesOnPile3 = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -135,6 +150,46 @@
 {
     QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:(question + 1)];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *fileName = [[NSString alloc] initWithFormat:@"%@/%@_%i.txt", documentsDirectory, [self delegate].userId,question];
+    NSString *buffer = [[NSString alloc] initWithFormat:@"%@:\n", questionLabel.text];
+    //NSLog(@"Question:\n\t%@",questionLabel.text);
+    //NSLog(@"\t%@:",pileLabel1.text);
+    buffer = [buffer stringByAppendingFormat:@"\t%@:\n",pileLabel1.text];
+    for (NSString* obj in imagesOnPile1) {
+        //NSLog(@"\t\t%@",obj);
+        buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
+    }
+    
+    if (numPiles == 3 ) {
+        //NSLog(@"\t%@:",pileLabel2.text);
+        buffer = [buffer stringByAppendingFormat:@"\t%@:\n",pileLabel2.text];
+        for (NSString* obj in imagesOnPile2) {
+            //NSLog(@"\t\t%@",obj);
+            buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
+        }
+    
+        //NSLog(@"\t%@:",pileLabel3.text);
+        buffer = [buffer stringByAppendingFormat:@"\t%@:\n",pileLabel3.text];
+        for (NSString* obj in imagesOnPile3) {
+            //NSLog(@"\t\t%@",obj);
+            buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
+        }
+    } else {
+        //NSLog(@"\t%@:",pileLabel3.text);
+        buffer = [buffer stringByAppendingFormat:@"\t%@:\n",pileLabel3.text];
+        for (NSString* obj in imagesOnPile2) {
+            //NSLog(@"\t\t%@",obj);
+            buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
+        }        
+    }
+    NSLog(@"%@\n%@",fileName,buffer);
+    [buffer writeToFile:fileName atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+    
 }
 
 -(AppDelegate*)delegate {
@@ -161,14 +216,23 @@
     return FALSE;
 }
 
+-(void)removeFromPile:(NSMutableArray*)pile string:(NSString*)key {
+    if ( [pile containsObject:key] ) {
+        [pile removeObjectIdenticalTo:key];
+    }
+}
+
 - (IBAction)imageReleased:(id)sender withEvent:(UIEvent*) event{
     
     [self.view bringSubviewToFront:(UIView*)sender];
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
     
+    NSUInteger pileNumber = 0;
+    
     if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
         //NSLog(@"Released Within Pile 1!");
+        pileNumber = 1;
         control.center = CGPointMake(pile1.frame.origin.x + pile1.frame.size.width/2, 
                                      pile1.frame.origin.y + pile1.frame.size.height/2);
     }
@@ -179,20 +243,53 @@
             //NSLog(@"Released Within Pile 2!");
             control.center = CGPointMake(pile2.frame.origin.x + pile2.frame.size.width/2, 
                                          pile2.frame.origin.y + pile2.frame.size.height/2);
+            pileNumber = 2;
         }
         
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Released Within Pile 3!");
             control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
                                          pile3.frame.origin.y + pile3.frame.size.height/2);
+            pileNumber = 3;
         }
     } else {
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Released Within Pile 2!");
             control.center = CGPointMake(pile3.frame.origin.x + pile3.frame.size.width/2, 
                                          pile3.frame.origin.y + pile3.frame.size.height/2);
+            pileNumber = 2;
         }
     }
+    
+    NSString* labelText = ((UIButton*)sender).titleLabel.text;
+    
+    switch (pileNumber) {
+        case 0:
+            [self removeFromPile:imagesOnPile1 string:labelText];
+            [self removeFromPile:imagesOnPile2 string:labelText];
+            [self removeFromPile:imagesOnPile3 string:labelText];
+            break;
+        case 1:
+            [self removeFromPile:imagesOnPile2 string:labelText];
+            [self removeFromPile:imagesOnPile3 string:labelText];
+            [imagesOnPile1 addObject:labelText];
+            break;
+        case 2:
+            [self removeFromPile:imagesOnPile1 string:labelText];
+            [self removeFromPile:imagesOnPile3 string:labelText];
+            [imagesOnPile2 addObject:labelText];
+            break;
+        case 3:
+            [self removeFromPile:imagesOnPile1 string:labelText];
+            [self removeFromPile:imagesOnPile2 string:labelText];
+            [imagesOnPile3 addObject:labelText];
+            break;
+    }
+    
+    
+    pile1.backgroundColor = nil;
+    pile2.backgroundColor = nil;
+    pile3.backgroundColor = nil;
 }
 
 - (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
@@ -201,7 +298,6 @@
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
     control.center = point;
-    
     
     if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
         //NSLog(@"Within Pile 1!");
@@ -229,8 +325,7 @@
     } else {
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Within Pile 2!");
-            pile3.backgroundColor = [UIColor darkGrayColor];
-        } else {
+            pile3.backgroundColor = [UIColor darkGrayColor];        } else {
             pile3.backgroundColor = nil;
         }
     }

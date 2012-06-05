@@ -32,6 +32,7 @@
 		A9D0F167157D44DA00D6BA4F /* Image_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D0F15E157D44DA00D6BA4F /* Image_6.png */; };
 		A9D0F168157D44DA00D6BA4F /* Image_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D0F15F157D44DA00D6BA4F /* Image_7.png */; };
 		A9D0F169157D44DA00D6BA4F /* Image_8.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D0F160157D44DA00D6BA4F /* Image_8.png */; };
+		A9D0F16E157D9A7900D6BA4F /* DropboxInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D0F16D157D9A7900D6BA4F /* DropboxInterface.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		A9D0F15E157D44DA00D6BA4F /* Image_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Image_6.png; sourceTree = "<group>"; };
 		A9D0F15F157D44DA00D6BA4F /* Image_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Image_7.png; sourceTree = "<group>"; };
 		A9D0F160157D44DA00D6BA4F /* Image_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Image_8.png; sourceTree = "<group>"; };
+		A9D0F16C157D9A7900D6BA4F /* DropboxInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxInterface.h; sourceTree = "<group>"; };
+		A9D0F16D157D9A7900D6BA4F /* DropboxInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxInterface.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 			children = (
 				A9D0F135157D34F900D6BA4F /* AppDelegate.h */,
 				A9D0F136157D34F900D6BA4F /* AppDelegate.m */,
+				A9D0F16C157D9A7900D6BA4F /* DropboxInterface.h */,
+				A9D0F16D157D9A7900D6BA4F /* DropboxInterface.m */,
 				A9D0F138157D34F900D6BA4F /* ViewController.h */,
 				A9D0F139157D34F900D6BA4F /* ViewController.m */,
 				A9D0F14B157D3F3F00D6BA4F /* QuestionViewController.h */,
@@ -257,6 +262,7 @@
 				A9D0F137157D34F900D6BA4F /* AppDelegate.m in Sources */,
 				A9D0F13A157D34F900D6BA4F /* ViewController.m in Sources */,
 				A9D0F14E157D3F3F00D6BA4F /* QuestionViewController.m in Sources */,
+				A9D0F16E157D9A7900D6BA4F /* DropboxInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,8 @@
     
     NSUInteger numPiles;
     IBOutlet UILabel *pileLabel1, *pileLabel2, *pileLabel3;
+    
+    NSMutableArray *imagesOnPile1, *imagesOnPile2, *imagesOnPile3;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion;
