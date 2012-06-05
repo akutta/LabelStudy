@@ -37,6 +37,62 @@
     return self;
 }
 
+-(void)addBorder:(UILabel*)label width:(CGFloat)borderWidth radius:(CGFloat)cornerRadius {
+    label.layer.borderWidth = borderWidth;
+    label.layer.borderColor = [UIColor grayColor].CGColor;
+    label.layer.cornerRadius = cornerRadius;
+}
+
+- (void)changeHiddenPile1:(BOOL)isHidden {
+    pile1.hidden = isHidden;
+    pileLabel1.hidden = isHidden;
+    
+    // Pile 1 Sub Squares
+    pile1_1x1.hidden = isHidden;
+    pile1_1x2.hidden = isHidden;
+    pile1_1x3.hidden = isHidden;
+    pile1_2x1.hidden = isHidden;
+    pile1_2x2.hidden = isHidden;
+    pile1_2x3.hidden = isHidden;
+    pile1_3x1.hidden = isHidden;
+    pile1_3x2.hidden = isHidden;
+    pile1_3x3.hidden = isHidden;
+}
+
+- (void)changeHiddenPile2:(BOOL)isHidden {
+    pile2.hidden = isHidden;
+    pileLabel2.hidden = isHidden;
+    
+    // Pile 2 Sub Squares
+    pile2_1x1.hidden = isHidden;
+    pile2_1x2.hidden = isHidden;
+    pile2_1x3.hidden = isHidden;
+    pile2_2x1.hidden = isHidden;
+    pile2_2x2.hidden = isHidden;
+    pile2_2x3.hidden = isHidden;
+    pile2_3x1.hidden = isHidden;
+    pile2_3x2.hidden = isHidden;
+    pile2_3x3.hidden = isHidden;
+}
+
+- (void)changeHiddenPile3:(BOOL)isHidden {
+    pile3.hidden = isHidden;
+    pileLabel3.hidden = isHidden;
+    
+    // Pile 3 Sub Squares
+    pile3_1x1.hidden = isHidden;
+    pile3_1x2.hidden = isHidden;
+    pile3_1x3.hidden = isHidden;
+    pile3_2x1.hidden = isHidden;
+    pile3_2x2.hidden = isHidden;
+    pile3_2x3.hidden = isHidden;
+    pile3_3x1.hidden = isHidden;
+    pile3_3x2.hidden = isHidden;
+    pile3_3x3.hidden = isHidden;
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,20 +103,51 @@
     [pileLabel2 setNumberOfLines:2];
     [pileLabel3 setNumberOfLines:2];
     
-    mainTitle.layer.borderColor = [UIColor grayColor].CGColor;
-    mainTitle.layer.borderWidth = 3.0f;
+    [self addBorder:mainTitle width:3.0f radius:0.0f];
+    [self addBorder:pile1 width:3.0f radius:0.0f];   
+    [self addBorder:pile2 width:3.0f radius:0.0f];
+    [self addBorder:pile3 width:3.0f radius:0.0f];
     
-    pile1.layer.borderWidth = 3.0f;
-    pile1.layer.borderColor = [UIColor grayColor].CGColor;
-    pile1.layer.cornerRadius = 10.0f;
+    // Pile 1 Sub Squares
+    [self addBorder:pile1_1x1 width:1.0f radius:0.0f];
+    [self addBorder:pile1_1x2 width:1.0f radius:0.0f];
+    [self addBorder:pile1_1x3 width:1.0f radius:0.0f];
+    [self addBorder:pile1_2x1 width:1.0f radius:0.0f];
+    [self addBorder:pile1_2x2 width:1.0f radius:0.0f];
+    [self addBorder:pile1_2x3 width:1.0f radius:0.0f];
+    [self addBorder:pile1_3x1 width:1.0f radius:0.0f];
+    [self addBorder:pile1_3x2 width:1.0f radius:0.0f];
+    [self addBorder:pile1_3x3 width:1.0f radius:0.0f];
     
-    pile2.layer.borderWidth = 3.0f;
-    pile2.layer.borderColor = [UIColor grayColor].CGColor;
-    pile2.layer.cornerRadius = 10.0f;
     
-    pile3.layer.borderWidth = 3.0f;
-    pile3.layer.borderColor = [UIColor grayColor].CGColor;
-    pile3.layer.cornerRadius = 10.0f;
+    // Pile 2 Sub Squares
+    [self addBorder:pile2_1x1 width:1.0f radius:0.0f];
+    [self addBorder:pile2_1x2 width:1.0f radius:0.0f];
+    [self addBorder:pile2_1x3 width:1.0f radius:0.0f];
+    [self addBorder:pile2_2x1 width:1.0f radius:0.0f];
+    [self addBorder:pile2_2x2 width:1.0f radius:0.0f];
+    [self addBorder:pile2_2x3 width:1.0f radius:0.0f];
+    [self addBorder:pile2_3x1 width:1.0f radius:0.0f];
+    [self addBorder:pile2_3x2 width:1.0f radius:0.0f];
+    [self addBorder:pile2_3x3 width:1.0f radius:0.0f];
+    
+    
+    // Pile 3 Sub Squares
+    [self addBorder:pile3_1x1 width:1.0f radius:0.0f];
+    [self addBorder:pile3_1x2 width:1.0f radius:0.0f];
+    [self addBorder:pile3_1x3 width:1.0f radius:0.0f];
+    [self addBorder:pile3_2x1 width:1.0f radius:0.0f];
+    [self addBorder:pile3_2x2 width:1.0f radius:0.0f];
+    [self addBorder:pile3_2x3 width:1.0f radius:0.0f];
+    [self addBorder:pile3_3x1 width:1.0f radius:0.0f];
+    [self addBorder:pile3_3x2 width:1.0f radius:0.0f];
+    [self addBorder:pile3_3x3 width:1.0f radius:0.0f];
+    
+    largeFrame = label0.frame;
+    CGFloat scale = 72.0f / MAX(label0.frame.size.width,label0.frame.size.height);
+    smallFrame = CGRectMake(0.0, 0.0, label0.frame.size.width * scale, label0.frame.size.height * scale);
+    
+
     
     numPiles = 2;
     
@@ -69,20 +156,16 @@
             backButton.hidden = true;
             questionLabel.text = @"On this page you’ll see each of the labels.  Look at each of them.  Then, click on the label that you think will be most effective in convince you to not start smoking.";
             
-            pileLabel1.hidden = true;
-            pile1.hidden = true;
-            pileLabel3.hidden = true;
-            pile3.hidden = true;
+            [self changeHiddenPile1:TRUE];
+            [self changeHiddenPile3:TRUE];
             break;
         case 2:
             backButton.hidden = true;
             questionLabel.text = @"On this page you’ll see each of the labels.  Look at each of them.  Then, click on the label that you think is most effective in convincing YOU to try to quit smoking.";
             
             
-            pileLabel1.hidden = true;
-            pile1.hidden = true;
-            pileLabel3.hidden = true;
-            pile3.hidden = true;
+            [self changeHiddenPile1:TRUE];
+            [self changeHiddenPile3:TRUE];
             break;
         case 3:
             questionLabel.text = @"Please sort the warning labels into two piles, those meant for someone like you and those for a different kind of person.";
@@ -138,8 +221,7 @@
     }
      
     if ( numPiles == 2 ) {
-        pileLabel2.hidden = true;
-        pile2.hidden = true;
+        [self changeHiddenPile2:TRUE];
     }
     
 }
@@ -262,6 +344,52 @@
     }
 }
 
+
+-(BOOL)highlight:(UILabel*)pile objectPoint:(CGPoint)point highlightColor:(UIColor*)color {
+    if ( [self withinPile:pile.frame objectPoint:point] == TRUE ) {
+        pile.backgroundColor = color;
+        return TRUE;
+    } else {
+        pile.backgroundColor = nil;
+        return FALSE;
+    }
+}
+
+-(void)checkHighlight:(CGPoint)point {
+    [self highlight:pile1_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile1_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    
+    
+    [self highlight:pile2_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile2_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    
+    
+    [self highlight:pile3_1x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_1x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_1x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_2x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_2x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_2x3 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_3x1 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_3x2 objectPoint:point highlightColor:[UIColor blueColor]];
+    [self highlight:pile3_3x3 objectPoint:point highlightColor:[UIColor blueColor]];
+}
+
+
 - (IBAction)imageReleased:(id)sender withEvent:(UIEvent*) event{
     
     [self.view bringSubviewToFront:(UIView*)sender];
@@ -326,7 +454,7 @@
             break;
     }
     
-    
+    [self checkHighlight:(CGPointZero)];
     pile1.backgroundColor = nil;
     pile2.backgroundColor = nil;
     pile3.backgroundColor = nil;
@@ -360,40 +488,42 @@
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
     control.center = point;
+    BOOL bInPile = false;
     
-    if ( [self withinPile:pile1.frame objectPoint:point] == TRUE ) {
-        //NSLog(@"Within Pile 1!");
-        pile1.backgroundColor = [UIColor darkGrayColor];
-    } else {
-        pile1.backgroundColor = nil;
+    if ( [self highlight:pile1 objectPoint:point highlightColor:[UIColor darkGrayColor]] ) {
+        bInPile = true;
     }
     
     // Special Case if 3 piles
     if (numPiles == 3 ) {
-        if ( [self withinPile:pile2.frame objectPoint:point] == TRUE ) {
-            //NSLog(@"Within Pile 2!");
-            pile2.backgroundColor = [UIColor darkGrayColor];
-        } else {
-            pile2.backgroundColor = nil;
+        if ( [self highlight:pile2 objectPoint:point highlightColor:[UIColor darkGrayColor]] ) {
+            bInPile = true;
         }
-        
-        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
-            //NSLog(@"Within Pile 3!");
-            pile3.backgroundColor = [UIColor darkGrayColor];
-        } else {
-            pile3.backgroundColor = nil;
+        if ( [self highlight:pile3 objectPoint:point highlightColor:[UIColor darkGrayColor]] ) {
+            bInPile = true;
         }
-        
     } else {
-        if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
-            //NSLog(@"Within Pile 2!");
-            pile3.backgroundColor = [UIColor darkGrayColor];       
-        } else {
-            pile3.backgroundColor = nil;
+        if ( [self highlight:pile3 objectPoint:point highlightColor:[UIColor darkGrayColor]] ) {
+            bInPile = true;
         }
+    }
+    
+    [self checkHighlight:point];
+    
+    if (bInPile) {
+        ((UIButton*)sender).frame = [self getSmallFrame:((UIButton*)sender).frame];
+    } else {
+        ((UIButton*)sender).frame = [self getLargeFrame:((UIButton*)sender).frame];
     }
 }
 
+-(CGRect) getSmallFrame:(CGRect)curFrame {
+    return CGRectMake(curFrame.origin.x, curFrame.origin.y,smallFrame.size.width, smallFrame.size.height);
+}
 
+
+-(CGRect) getLargeFrame:(CGRect)curFrame {
+    return CGRectMake(curFrame.origin.x, curFrame.origin.y,largeFrame.size.width, largeFrame.size.height);
+}
 
 @end

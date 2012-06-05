@@ -16,6 +16,10 @@
     IBOutlet UILabel *mainTitle, *questionLabel;
     IBOutlet UILabel *pile1, *pile2, *pile3;
     
+    IBOutlet UILabel *pile1_1x1, *pile1_1x2, *pile1_1x3, *pile1_2x1, *pile1_2x2, *pile1_2x3, *pile1_3x1, *pile1_3x2, *pile1_3x3;
+    IBOutlet UILabel *pile2_1x1, *pile2_1x2, *pile2_1x3, *pile2_2x1, *pile2_2x2, *pile2_2x3, *pile2_3x1, *pile2_3x2, *pile2_3x3;
+    IBOutlet UILabel *pile3_1x1, *pile3_1x2, *pile3_1x3, *pile3_2x1, *pile3_2x2, *pile3_2x3, *pile3_3x1, *pile3_3x2, *pile3_3x3;
+    
     NSUInteger numPiles;
     IBOutlet UILabel *pileLabel1, *pileLabel2, *pileLabel3;
     
@@ -23,6 +27,8 @@
     
     NSMutableArray *remainingQuestions;
     NSArray        *questionBank;
+    
+    CGRect smallFrame, largeFrame;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
