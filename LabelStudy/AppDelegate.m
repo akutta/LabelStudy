@@ -48,8 +48,6 @@
     
     dbInterface = [[DropboxInterface alloc] init];
     [dbInterface initializeDropbox:self.window];
-    
-    
     return YES;
 }
 

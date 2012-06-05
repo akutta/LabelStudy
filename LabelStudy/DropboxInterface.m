@@ -10,8 +10,10 @@
 #import <DropboxSDK/DropboxSDK.h>
 
 
-#define kDBAppKey @"l20yc2w3q5ala1g"
-#define kDBAppSecret @"rgksxexn6dsd0y1"
+//#define kDBAppKey @"l20yc2w3q5ala1g"
+#define kDBAppKey @"eln8t6s48ncqzce"
+//#define kDBAppSecret @"rgksxexn6dsd0y1"
+#define kDBAppSecret @"f0sm26zy5kazajt"
 
 
 @implementation DropboxInterface 
@@ -81,8 +83,6 @@
             [self uploadFile:file dir:[documentsDirectory stringByAppendingFormat:@"/%@/",directory] userID:directory];
         }
     }
-    
-
 }
 
 - (void)alertFinished {
