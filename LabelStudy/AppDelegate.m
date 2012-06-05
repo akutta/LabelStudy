@@ -14,7 +14,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController, userId, dbSession;
+@synthesize viewController = _viewController, userId, dbInterface;
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

@@ -16,18 +16,6 @@
 
 @implementation QuestionViewController
 
-- (NSString*)getDirPath:(NSString*)dir {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString* documentsDirectory = [paths objectAtIndex:0];
-    
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:dir];
-    
-    NSError *error;
-    [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:&error];   
-    
-    return documentsDirectory;
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -155,7 +143,7 @@
     (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *fileName = [[NSString alloc] initWithFormat:@"%@/%@_%i.txt", documentsDirectory, [self delegate].userId,question];
+    NSString *fileName = [[NSString alloc] initWithFormat:@"%@_%i.txt", [self delegate].userId,question];
     NSString *buffer = [[NSString alloc] initWithFormat:@"%@:\n", questionLabel.text];
     //NSLog(@"Question:\n\t%@",questionLabel.text);
     //NSLog(@"\t%@:",pileLabel1.text);
@@ -187,8 +175,13 @@
             buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
         }        
     }
-    NSLog(@"%@\n%@",fileName,buffer);
-    [buffer writeToFile:fileName atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+    //NSLog(@"%@\n%@",fileName,buffer);
+    [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@",documentsDirectory,fileName] 
+             atomically:NO 
+               encoding:NSStringEncodingConversionAllowLossy 
+                  error:nil];
+    
+    [[self delegate].dbInterface uploadFile:fileName dir:documentsDirectory userID:[self delegate].userId];
     
 }
 
@@ -325,7 +318,8 @@
     } else {
         if ( [self withinPile:pile3.frame objectPoint:point] == TRUE ) {
             //NSLog(@"Within Pile 2!");
-            pile3.backgroundColor = [UIColor darkGrayColor];        } else {
+            pile3.backgroundColor = [UIColor darkGrayColor];       
+        } else {
             pile3.backgroundColor = nil;
         }
     }

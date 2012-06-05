@@ -24,6 +24,6 @@
 @property (nonatomic, retain) NSString* userId;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ViewController *viewController;
-@property (nonatomic, retain) DBSession* dbSession;
+@property (nonatomic, retain) DropboxInterface* dbInterface;
 
 @end
