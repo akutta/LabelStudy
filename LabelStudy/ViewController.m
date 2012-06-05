@@ -46,6 +46,16 @@
         return;
     }
     
+    if ( ![userID.text compare:@"hcrlwashu"] ) {
+        NSLog(@"Uploading Stored Data to Dropbox");
+        userID.text = @"";
+        userAge.text = @"";
+        [[self delegate].dbInterface uploadAllFiles];
+        return;
+    }
+    
+    
+
     if ( [userAge.text length] == 0 ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No User Age Entered"
                                                         message:@"You must enter your Age to continue." 
@@ -55,15 +65,6 @@
         [alert show];
         return;
     }
-    
-    if ( ![userID.text compare:@"hcrlwashu"] ) {
-        NSLog(@"Uploading Stored Data to Dropbox");
-        userID.text = @"";
-        [[self delegate].dbInterface uploadAllFiles];
-        return;
-    }
-    
-    
     
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains

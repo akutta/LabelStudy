@@ -70,6 +70,19 @@
     }
     
     //NSLog(@"IsSmoker:  %@",([self delegate].isSmoker ? @"YES" : @"NO"));   
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *fileName = [[NSString alloc] initWithFormat:@"%@.txt", [self delegate].userId];
+    NSString *buffer = [[NSString alloc] initWithFormat:@"Smoker:\t%@\n", ([self delegate].isSmoker ? @"YES" : @"NO")];
+    buffer = [buffer stringByAppendingFormat:@"Age:\t%i\n",[self delegate].userAge];
+    buffer = [buffer stringByAppendingFormat:@"Is Navajo:\t%@\n",([self delegate].isNavajo ? @"YES" : @"NO")];
+    
+    [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
+             atomically:YES 
+               encoding:NSStringEncodingConversionAllowLossy 
+                  error:nil];
     
     QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
                                                                              questions:[questionBank copy] questionsToAsk:questionBank];
