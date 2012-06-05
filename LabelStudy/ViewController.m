@@ -45,6 +45,28 @@
         return;
     }
     
+    if ( ![userID.text compare:@"hcrlwashu"] ) {
+        NSLog(@"Uploading Stored Data to Dropbox");
+        userID.text = @"";
+        [[self delegate].dbInterface uploadAllFiles];
+        return;
+    }
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSError *error;
+    
+    
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:[documentsDirectory stringByAppendingFormat:@"/%@",userID.text]
+                                   withIntermediateDirectories:NO
+                                                    attributes:nil
+                                                         error:&error])
+    {
+        NSLog(@"Create directory error: %@", error);
+    }
+    
     [[self delegate] setUserId:userID.text];
     QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:1];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 

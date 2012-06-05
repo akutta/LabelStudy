@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface QuestionViewController : UIViewController {
-    IBOutlet UIButton *backButton, *nextButton;
+    IBOutlet UIButton *backButton, *nextButton, *finishButton;
     NSUInteger question;
     
     IBOutlet UIButton *label0, *label1, *label2, *label3, *label4, *label5, *label6, *label7, *label8;
@@ -25,5 +25,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil question:(NSUInteger)currentQuestion;
 -(IBAction)lastQuestion:(id)sender;
 -(IBAction)nextQuestion:(id)sender;
+-(IBAction)finishQuiz:(id)sender;
 
 @end

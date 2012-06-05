@@ -8,6 +8,7 @@
 
 #import "QuestionViewController.h"
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface QuestionViewController ()
@@ -100,6 +101,7 @@
             
         case 7:
             nextButton.hidden = true;
+            finishButton.hidden = false;
             questionLabel.text = @"Please sort the warning labels into two piles, those that would make you 'think about banning smoking in your home or car', and those that would 'not'.";
             pileLabel1.text = @"Would Make You Think";
             pileLabel3.text = @"Would Not Make You Think";
@@ -134,10 +136,7 @@
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
 }
 
--(IBAction)nextQuestion:(id)sender
-{
-    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:(question + 1)];
-    [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
+-(void)processFeedback {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains
     (NSDocumentDirectory, NSUserDomainMask, YES);
@@ -160,7 +159,7 @@
             //NSLog(@"\t\t%@",obj);
             buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
         }
-    
+        
         //NSLog(@"\t%@:",pileLabel3.text);
         buffer = [buffer stringByAppendingFormat:@"\t%@:\n",pileLabel3.text];
         for (NSString* obj in imagesOnPile3) {
@@ -175,14 +174,31 @@
             buffer = [buffer stringByAppendingFormat:@"\t\t%@\n",obj];
         }        
     }
-    //NSLog(@"%@\n%@",fileName,buffer);
-    [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@",documentsDirectory,fileName] 
-             atomically:NO 
+    
+    NSLog(@"%@\n%@",[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] ,buffer);
+    
+    [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
+             atomically:YES 
                encoding:NSStringEncodingConversionAllowLossy 
                   error:nil];
     
-    [[self delegate].dbInterface uploadFile:fileName dir:documentsDirectory userID:[self delegate].userId];
-    
+    // Requires an Internet Connection
+    // Issue is that we can't expect to have an internet connection for the study that is being performed
+    // [[self delegate].dbInterface uploadFile:fileName dir:documentsDirectory userID:[self delegate].userId];
+}
+
+-(IBAction)nextQuestion:(id)sender
+{
+    [self processFeedback];
+    QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil question:(question + 1)];
+    [[self delegate] switchView:self.view toView:nextView.view newController:nextView]; 
+}
+
+-(IBAction)finishQuiz:(id)sender
+{
+    [self processFeedback];
+    ViewController *nextView = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view newController:nextView];
 }
 
 -(AppDelegate*)delegate {
