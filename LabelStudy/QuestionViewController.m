@@ -151,6 +151,11 @@
     smallFrame = CGRectMake(0.0, 0.0, label0.frame.size.width * scale, label0.frame.size.height * scale);
     
 
+    if ([self delegate].isNavajo) {
+        label8.hidden = true;
+        label4.hidden = true;
+    }
+    
     
     numPiles = 2;
     
