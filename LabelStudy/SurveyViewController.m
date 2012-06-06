@@ -77,7 +77,7 @@
     NSString *fileName = [[NSString alloc] initWithFormat:@"%@.txt", [self delegate].userId];
     NSString *buffer = [[NSString alloc] initWithFormat:@"Smoker:\t%@\n", ([self delegate].isSmoker ? @"YES" : @"NO")];
     buffer = [buffer stringByAppendingFormat:@"Age:\t%i\n",[self delegate].userAge];
-    buffer = [buffer stringByAppendingFormat:@"View Dead Body, Lungs, Heart:\t%@\n",([self delegate].isNavajo ? @"NO" : @"YES")];
+    buffer = [buffer stringByAppendingFormat:@"View Cadavar, Lungs, Heart:\t%@\n",([self delegate].isNavajo ? @"NO" : @"YES")];
     
     [buffer writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
              atomically:YES 
