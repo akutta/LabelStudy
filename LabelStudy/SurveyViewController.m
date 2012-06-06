@@ -30,7 +30,7 @@
 {   
     NSMutableArray *questionBank = [[NSMutableArray alloc] initWithCapacity:7];
     if ( [self delegate].userAge < 18 ) {
-        if ( answerQ1.selectedSegmentIndex == 0 ) {
+        if ( answerQ1.selectedSegmentIndex != 0 ) {
             [[self delegate] setIsSmoker:TRUE];
             
             [questionBank addObject:[NSNumber numberWithInt:2]];
@@ -69,7 +69,7 @@
         }
     }
     
-    //NSLog(@"IsSmoker:  %@",([self delegate].isSmoker ? @"YES" : @"NO"));   
+    NSLog(@"IsSmoker:  %@",([self delegate].isSmoker ? @"YES" : @"NO"));   
     NSArray *paths = NSSearchPathForDirectoriesInDomains
     (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];

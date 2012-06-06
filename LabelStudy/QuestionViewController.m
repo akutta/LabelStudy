@@ -546,12 +546,22 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         
         NSString *fileName = [[NSString alloc] initWithFormat:@"%@_%i.txt", [self delegate].userId,question];
-        NSString *selectedLabel = questionLabel.text;
-        selectedLabel = [selectedLabel stringByAppendingFormat:@"\n\t%@",((UIButton*)sender).titleLabel.text];
+        //NSString *selectedLabel = [[NSString alloc] initWithFormat:@"%@",questionLabel.text];
+        //selectedLabel = [selectedLabel stringByAppendingFormat:@"\n\t%@",((UIButton*)sender).titleLabel.text];
+        NSString* selectedLabel = ((UIButton*)sender).titleLabel.text;
+        
         [selectedLabel writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
                  atomically:YES 
                    encoding:NSStringEncodingConversionAllowLossy 
                       error:nil];
+
+        
+        [selectedLabel writeToFile:[[NSString alloc] initWithFormat:@"%@/%@/%@",documentsDirectory,[self delegate].userId, fileName] 
+                 atomically:YES 
+                   encoding:NSStringEncodingConversionAllowLossy 
+                      error:nil];
+        
+        NSLog(@"Filename:  %@\n%@",fileName,selectedLabel);
         
         QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
                                                                                  questions:questionBank questionsToAsk:remainingQuestions];
