@@ -249,6 +249,7 @@
 -(IBAction)lastQuestion:(id)sender
 {
     NSInteger index = [questionBank indexOfObject:[NSNumber numberWithInt:question]];
+    [remainingQuestions insertObject:[questionBank objectAtIndex:index] atIndex:0];
     NSInteger numberToInsert = [[questionBank objectAtIndex:(index-1)] intValue];
     [remainingQuestions insertObject:[NSNumber numberWithInt:numberToInsert] atIndex:0];
     QuestionViewController *nextView = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil 
