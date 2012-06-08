@@ -66,6 +66,12 @@
             }
         } else {
             [[self delegate] setIsSmoker:FALSE];
+            [questionBank addObject:[NSNumber numberWithInt:1]];
+            [questionBank addObject:[NSNumber numberWithInt:3]];
+            [questionBank addObject:[NSNumber numberWithInt:4]];
+            if ( answerQ4.selectedSegmentIndex > 1 && [self delegate].userAge < 25 ) {
+                [questionBank addObject:[NSNumber numberWithInt:9]];
+            }
         }
     }
     

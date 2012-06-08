@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A92B717F157E6FCE0088EBC6 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */; };
 		A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */; };
+		A92C1B8F15829FFE00DDB895 /* DONE.png in Resources */ = {isa = PBXBuildFile; fileRef = A92C1B8E15829FFE00DDB895 /* DONE.png */; };
 		A9D0F127157D34F900D6BA4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F126157D34F900D6BA4F /* UIKit.framework */; };
 		A9D0F129157D34F900D6BA4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F128157D34F900D6BA4F /* Foundation.framework */; };
 		A9D0F12B157D34F900D6BA4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F12A157D34F900D6BA4F /* CoreGraphics.framework */; };
@@ -41,6 +42,7 @@
 		A92B717C157E6FCE0088EBC6 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyViewController.h; sourceTree = "<group>"; };
 		A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
 		A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyViewController.xib; sourceTree = "<group>"; };
+		A92C1B8E15829FFE00DDB895 /* DONE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DONE.png; sourceTree = "<group>"; };
 		A9D0F122157D34F900D6BA4F /* LabelStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D0F126157D34F900D6BA4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9D0F128157D34F900D6BA4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +159,7 @@
 		A9D0F150157D3F8C00D6BA4F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A92C1B8E15829FFE00DDB895 /* DONE.png */,
 				A9D0F157157D44DA00D6BA4F /* Labels.assets */,
 				A9D0F151157D3F8C00D6BA4F /* BackActive.png */,
 				A9D0F152157D3F8C00D6BA4F /* NextActive.png */,
@@ -257,6 +260,7 @@
 				A9D0F168157D44DA00D6BA4F /* Image_7.png in Resources */,
 				A9D0F169157D44DA00D6BA4F /* Image_8.png in Resources */,
 				A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */,
+				A92C1B8F15829FFE00DDB895 /* DONE.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
