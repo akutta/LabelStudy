@@ -54,6 +54,19 @@
         return;
     }
     
+    if ( ![userID.text compare:@"hcrldel"] ) {
+        NSLog(@"Deleting Local Files");
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:documentsDirectory error:nil];
+        if ( success == YES ) {
+            NSLog(@"Successfully Deleted Local Files");
+        }
+        userID.text = @"";
+        userAge.text = @"";
+        return;
+    }
+    
     
 
     if ( [userAge.text length] == 0 ) {
