@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SurveyViewController : UIViewController {
-    IBOutlet UILabel* question1, *question2, *question3, *question4;
-    IBOutlet UISegmentedControl* answerQ1, *answerQ2, *answerQ3, *answerQ4;
+    IBOutlet UILabel* question1, *question4;
+    IBOutlet UISegmentedControl* answerQ1, *answerQ4;
 }
 
 
