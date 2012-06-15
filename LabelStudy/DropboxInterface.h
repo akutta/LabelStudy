@@ -18,4 +18,6 @@
 -(void)initializeDropbox:(UIWindow*)window;
 -(void)uploadFile:(NSString*)fileName dir:(NSString*)documentsDir userID:(NSString*)usrID;
 -(void)uploadAllFiles;
+-(void)unlinkAccount;
+-(void)linkAccount:(UIWindow*)window;
 @end

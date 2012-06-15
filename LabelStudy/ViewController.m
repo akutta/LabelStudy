@@ -46,6 +46,15 @@
         return;
     }
     
+    if ( ![userID.text compare:@"hcrlreauth"] ) {
+        NSLog(@"Unlinking and Reauthorizing Dropbox");
+        [[self delegate].dbInterface unlinkAccount];
+        [[self delegate].dbInterface linkAccount:[self delegate].window];
+        userID.text = @"";
+        userAge.text = @"";
+        return;
+    }
+    
     if ( ![userID.text compare:@"hcrlwashu"] ) {
         NSLog(@"Uploading Stored Data to Dropbox");
         userID.text = @"";

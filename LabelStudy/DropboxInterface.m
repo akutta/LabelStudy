@@ -26,6 +26,17 @@
     return restClient;
 }
 
+-(void)unlinkAccount {
+    [[DBSession sharedSession] unlinkAll];
+}
+
+-(void)linkAccount:(UIWindow*)window {
+    
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:window.rootViewController];
+    }
+}
+
 // Should be called from AppDelegate
 -(void)initializeDropbox:(UIWindow*)window {
     
@@ -39,10 +50,7 @@
                                                          root:kDBRootAppFolder]; // either kDBRootAppFolder or kDBRootDropbox
     [DBSession setSharedSession:dbSession];
     
-    if (![[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] linkFromController:window.rootViewController];
-    }
-
+    [self linkAccount:window];
 }
 
 -(void)uploadFile:(NSString*)fileName dir:(NSString*)documentsDir userID:(NSString*)usrID {
