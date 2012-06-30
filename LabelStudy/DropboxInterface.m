@@ -74,7 +74,9 @@
 
 
 -(void)uploadAllFiles {
-    
+    numUsers = 0;
+    uploadCounter = 0;
+    maxUploads = 0;
     NSArray *paths = NSSearchPathForDirectoriesInDomains
     (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];

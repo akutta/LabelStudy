@@ -12,6 +12,7 @@
 #import "QuestionViewController.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "CompletedViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface QuestionViewController ()
@@ -319,8 +320,17 @@
 -(IBAction)finishQuiz:(id)sender
 {
     [self processFeedback];
+    
+    /*
     ViewController *nextView = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     [[self delegate] switchView:self.view toView:nextView.view newController:nextView];
+    UIAlertView *balaji = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You have completed the survey. Thank you for participating." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"DONE", nil];
+    [balaji show];
+    */
+    
+    CompletedViewController *nextView = [[CompletedViewController alloc] initWithNibName:@"CompletedViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view newController:nextView];
+    
 }
 
 -(AppDelegate*)delegate {

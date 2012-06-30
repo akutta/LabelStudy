@@ -10,6 +10,8 @@
 		A92B717F157E6FCE0088EBC6 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */; };
 		A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */; };
 		A92C1B8F15829FFE00DDB895 /* DONE.png in Resources */ = {isa = PBXBuildFile; fileRef = A92C1B8E15829FFE00DDB895 /* DONE.png */; };
+		A999A943159EB08300112FC6 /* CompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A999A941159EB08300112FC6 /* CompletedViewController.m */; };
+		A999A944159EB08300112FC6 /* CompletedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A999A942159EB08300112FC6 /* CompletedViewController.xib */; };
 		A9D0F127157D34F900D6BA4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F126157D34F900D6BA4F /* UIKit.framework */; };
 		A9D0F129157D34F900D6BA4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F128157D34F900D6BA4F /* Foundation.framework */; };
 		A9D0F12B157D34F900D6BA4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D0F12A157D34F900D6BA4F /* CoreGraphics.framework */; };
@@ -43,6 +45,9 @@
 		A92B717D157E6FCE0088EBC6 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
 		A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyViewController.xib; sourceTree = "<group>"; };
 		A92C1B8E15829FFE00DDB895 /* DONE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DONE.png; sourceTree = "<group>"; };
+		A999A940159EB08300112FC6 /* CompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedViewController.h; sourceTree = "<group>"; };
+		A999A941159EB08300112FC6 /* CompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedViewController.m; sourceTree = "<group>"; };
+		A999A942159EB08300112FC6 /* CompletedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedViewController.xib; sourceTree = "<group>"; };
 		A9D0F122157D34F900D6BA4F /* LabelStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D0F126157D34F900D6BA4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9D0F128157D34F900D6BA4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +135,8 @@
 			children = (
 				A9D0F135157D34F900D6BA4F /* AppDelegate.h */,
 				A9D0F136157D34F900D6BA4F /* AppDelegate.m */,
+				A999A940159EB08300112FC6 /* CompletedViewController.h */,
+				A999A941159EB08300112FC6 /* CompletedViewController.m */,
 				A9D0F16C157D9A7900D6BA4F /* DropboxInterface.h */,
 				A9D0F16D157D9A7900D6BA4F /* DropboxInterface.m */,
 				A9D0F14B157D3F3F00D6BA4F /* QuestionViewController.h */,
@@ -187,6 +194,7 @@
 		A9D0F16A157D653E00D6BA4F /* XIBS */ = {
 			isa = PBXGroup;
 			children = (
+				A999A942159EB08300112FC6 /* CompletedViewController.xib */,
 				A9D0F14D157D3F3F00D6BA4F /* QuestionViewController.xib */,
 				A92B717E157E6FCE0088EBC6 /* SurveyViewController.xib */,
 				A9D0F13B157D34F900D6BA4F /* ViewController.xib */,
@@ -261,6 +269,7 @@
 				A9D0F169157D44DA00D6BA4F /* Image_8.png in Resources */,
 				A92B7180157E6FCE0088EBC6 /* SurveyViewController.xib in Resources */,
 				A92C1B8F15829FFE00DDB895 /* DONE.png in Resources */,
+				A999A944159EB08300112FC6 /* CompletedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +286,7 @@
 				A9D0F14E157D3F3F00D6BA4F /* QuestionViewController.m in Sources */,
 				A9D0F16E157D9A7900D6BA4F /* DropboxInterface.m in Sources */,
 				A92B717F157E6FCE0088EBC6 /* SurveyViewController.m in Sources */,
+				A999A943159EB08300112FC6 /* CompletedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
