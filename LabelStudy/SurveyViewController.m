@@ -31,7 +31,7 @@
     NSMutableArray *questionBank = [[NSMutableArray alloc] initWithCapacity:7];
     if ( [self delegate].userAge < 18 ) {
         if ( answerQ1.selectedSegmentIndex == 0 ) {
-            [[self delegate] setIsSmoker:TRUE];
+            [[self delegate] setIsSmoker:YES];
             
             [questionBank addObject:[NSNumber numberWithInt:2]];
             [questionBank addObject:[NSNumber numberWithInt:3]];
@@ -42,7 +42,7 @@
                 [questionBank addObject:[NSNumber numberWithInt:9]];
             }
         } else {
-            [[self delegate] setIsSmoker:FALSE];
+            [[self delegate] setIsSmoker:NO];
             [questionBank addObject:[NSNumber numberWithInt:1]];
             [questionBank addObject:[NSNumber numberWithInt:3]];
             [questionBank addObject:[NSNumber numberWithInt:4]];
@@ -53,7 +53,7 @@
         }
     } else {
         if ( answerQ1.selectedSegmentIndex == 0 ) {
-            [[self delegate] setIsSmoker:TRUE];
+            [[self delegate] setIsSmoker:YES];
             [questionBank addObject:[NSNumber numberWithInt:2]];
             [questionBank addObject:[NSNumber numberWithInt:3]];
             [questionBank addObject:[NSNumber numberWithInt:4]];
@@ -65,7 +65,7 @@
                 }
             }
         } else {
-            [[self delegate] setIsSmoker:FALSE];
+            [[self delegate] setIsSmoker:NO];
             [questionBank addObject:[NSNumber numberWithInt:1]];
             [questionBank addObject:[NSNumber numberWithInt:3]];
             [questionBank addObject:[NSNumber numberWithInt:4]];
